@@ -32,7 +32,7 @@ def register(request):
             })
         hash_password = make_password(password)
 
-        user = CustomUser.objects.create_user( email=email, password=hash_password, username=username, is_active=False )
+        user = CustomUser.objects.create_user( email=email, password=password, username=username, is_active=False )
         user.save()
         send_activation_code(user)
         return redirect('confirm_code', user_id=user.id)            
@@ -51,9 +51,10 @@ def login_view(request):
         user = authenticate(request, email=email, password=password) 
         if user:
             login(request, user)
-            return redirect('home')
-        else:
-            return render(request, "login.html", {"error": "Invalid credentials"})   
+            print('success')
+            return redirect('profile_view')
+        else: 
+            return render(request, "login.html", {"error": "Invalid credentials"})  
         
 def logout_view(request):
     logout(request)

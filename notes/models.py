@@ -16,7 +16,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
     
-class category(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     notes = models.ForeignKey(Note, related_name='category', on_delete=models.CASCADE)
 
