@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render as render
-from .models import Note, Tag, category
+from .models import Note, Tag, Category
 
 def note_list(request):
     notes = Note.objects.all()
@@ -15,6 +15,6 @@ def tag_list(request):
     return render(request, 'tag_list.html', {'tags': tags})
 
 def category_list(request):
-    categories = category.objects.all()
+    categories = Category.objects.all()
     return render(request, 'category_list.html', {'categories': categories})
    
